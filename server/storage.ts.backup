@@ -1,0 +1,684 @@
+import { 
+  users, type User, type InsertUser, 
+  grades, type Grade, type InsertGrade,
+  topics, type Topic, type InsertTopic,
+  experiments, type Experiment, type InsertExperiment,
+  materials, type Material, type InsertMaterial,
+  resources, type Resource, type InsertResource,
+  userExperiments, type UserExperiment, type InsertUserExperiment,
+  achievements, type Achievement, type InsertAchievement,
+  userAchievements, type UserAchievement, type InsertUserAchievement
+} from "@shared/schema";
+
+export interface IStorage {
+  // Science Facts - temporarily removed to fix compilation issues
+  // getAllScienceFacts(): Promise<ScienceFact[]>;
+  // getScienceFact(id: number): Promise<ScienceFact | undefined>;
+  // createScienceFact(fact: InsertScienceFact): Promise<ScienceFact>;
+  // likeScienceFact(factId: number, userId: number): Promise<void>;
+  // shareScienceFact(factId: number, userId: number, platform: string): Promise<void>;
+  
+  // User CRUD
+  getUser(id: number): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+  
+  // Grade CRUD
+  getAllGrades(): Promise<Grade[]>;
+  getGrade(id: number): Promise<Grade | undefined>;
+  createGrade(grade: InsertGrade): Promise<Grade>;
+  
+  // Topic CRUD
+  getAllTopics(): Promise<Topic[]>;
+  getTopicsByGradeId(gradeId: number): Promise<Topic[]>;
+  getTopic(id: number): Promise<Topic | undefined>;
+  createTopic(topic: InsertTopic): Promise<Topic>;
+  
+  // Experiment CRUD
+  getAllExperiments(): Promise<Experiment[]>;
+  getExperimentsByGradeId(gradeId: number): Promise<Experiment[]>;
+  getExperimentsByTopicId(topicId: number): Promise<Experiment[]>;
+  getExperiment(id: number): Promise<Experiment | undefined>;
+  createExperiment(experiment: InsertExperiment): Promise<Experiment>;
+  
+  // Material CRUD
+  getMaterialsByExperimentId(experimentId: number): Promise<Material[]>;
+  createMaterial(material: InsertMaterial): Promise<Material>;
+  
+  // Resource CRUD
+  getResourcesByExperimentId(experimentId: number): Promise<Resource[]>;
+  createResource(resource: InsertResource): Promise<Resource>;
+  
+  // User Progress Tracking
+  getUserExperiments(userId: number): Promise<UserExperiment[]>;
+  getCompletedExperiments(userId: number): Promise<(UserExperiment & { experiment: Experiment })[]>;
+  markExperimentComplete(userExperiment: InsertUserExperiment): Promise<UserExperiment>;
+  updateExperimentProgress(id: number, userExperiment: Partial<InsertUserExperiment>): Promise<UserExperiment>;
+  
+  // Achievements
+  getUserAchievements(userId: number): Promise<(UserAchievement & { achievement: Achievement })[]>;
+  getAchievementsByCategory(category: string): Promise<Achievement[]>;
+  unlockAchievement(userId: number, achievementId: number): Promise<UserAchievement>;
+  updateAchievementProgress(userId: number, achievementId: number, progress: number): Promise<UserAchievement>;
+}
+
+export class MemStorage implements IStorage {
+  private users: Map<number, User>;
+  private grades: Map<number, Grade>;
+  private topics: Map<number, Topic>;
+  private experiments: Map<number, Experiment>;
+  private materials: Map<number, Material>;
+  private resources: Map<number, Resource>;
+  private userExperiments: Map<number, UserExperiment>;
+  private achievements: Map<number, Achievement>;
+  private userAchievements: Map<number, UserAchievement>;
+  
+  private userCurrentId: number;
+  private gradeCurrentId: number;
+  private topicCurrentId: number;
+  private experimentCurrentId: number;
+  private materialCurrentId: number;
+  private resourceCurrentId: number;
+
+  private userExperimentCurrentId: number;
+  private achievementCurrentId: number;
+  private userAchievementCurrentId: number;
+
+  constructor() {
+    this.users = new Map();
+    this.grades = new Map();
+    this.topics = new Map();
+    this.experiments = new Map();
+    this.materials = new Map();
+    this.resources = new Map();
+    this.userExperiments = new Map();
+    this.achievements = new Map();
+    this.userAchievements = new Map();
+    
+    this.userCurrentId = 1;
+    this.gradeCurrentId = 1;
+    this.topicCurrentId = 1;
+    this.experimentCurrentId = 1;
+    this.materialCurrentId = 1;
+    this.resourceCurrentId = 1;
+    this.userExperimentCurrentId = 1;
+    this.achievementCurrentId = 1;
+    this.userAchievementCurrentId = 1;
+    
+    // Initialize with sample data
+    this.initializeData();
+  }
+
+  // User CRUD
+  async getUser(id: number): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username,
+    );
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const id = this.userCurrentId++;
+    const user: User = { 
+      ...insertUser, 
+      id,
+      email: insertUser.email || null,
+      firstName: insertUser.firstName || null,
+      lastName: insertUser.lastName || null,
+      identityNumber: insertUser.identityNumber || null,
+      homeAddress: insertUser.homeAddress || null,
+      workAddress: insertUser.workAddress || null,
+      cellNumber: insertUser.cellNumber || null,
+      homeNumber: insertUser.homeNumber || null,
+      workNumber: insertUser.workNumber || null,
+      grade: insertUser.grade || null,
+      school: insertUser.school || null,
+      subjects: insertUser.subjects || null,
+      aboutYourself: insertUser.aboutYourself || null,
+      stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      subscriptionStatus: "inactive",
+      subscriptionTier: null,
+      subscriptionExpiryDate: null,
+      createdAt: new Date()
+    };
+    this.users.set(id, user);
+    return user;
+  }
+  
+  // Grade CRUD
+  async getAllGrades(): Promise<Grade[]> {
+    return Array.from(this.grades.values());
+  }
+  
+  async getGrade(id: number): Promise<Grade | undefined> {
+    return this.grades.get(id);
+  }
+  
+  async createGrade(insertGrade: InsertGrade): Promise<Grade> {
+    const id = this.gradeCurrentId++;
+    const grade: Grade = { ...insertGrade, id };
+    this.grades.set(id, grade);
+    return grade;
+  }
+  
+  // Topic CRUD
+  async getAllTopics(): Promise<Topic[]> {
+    return Array.from(this.topics.values());
+  }
+  
+  async getTopicsByGradeId(gradeId: number): Promise<Topic[]> {
+    return Array.from(this.topics.values()).filter(
+      (topic) => topic.gradeId === gradeId
+    );
+  }
+  
+  async getTopic(id: number): Promise<Topic | undefined> {
+    return this.topics.get(id);
+  }
+  
+  async createTopic(insertTopic: InsertTopic): Promise<Topic> {
+    const id = this.topicCurrentId++;
+    const topic: Topic = { ...insertTopic, id };
+    this.topics.set(id, topic);
+    return topic;
+  }
+  
+  // Experiment CRUD
+  async getAllExperiments(): Promise<Experiment[]> {
+    return Array.from(this.experiments.values());
+  }
+  
+  async getExperimentsByGradeId(gradeId: number): Promise<Experiment[]> {
+    return Array.from(this.experiments.values()).filter(
+      (experiment) => experiment.gradeId === gradeId
+    );
+  }
+  
+  async getExperimentsByTopicId(topicId: number): Promise<Experiment[]> {
+    return Array.from(this.experiments.values()).filter(
+      (experiment) => experiment.topicId === topicId
+    );
+  }
+  
+  async getExperiment(id: number): Promise<Experiment | undefined> {
+    return this.experiments.get(id);
+  }
+  
+  async createExperiment(insertExperiment: InsertExperiment): Promise<Experiment> {
+    const id = this.experimentCurrentId++;
+    const now = new Date();
+    const experiment: Experiment = { 
+      ...insertExperiment, 
+      id, 
+      createdAt: now,
+      objective: insertExperiment.objective || null,
+      extensionActivities: insertExperiment.extensionActivities || null,
+      safetyPrecautions: insertExperiment.safetyPrecautions || null,
+      troubleshooting: insertExperiment.troubleshooting || null,
+      variations: insertExperiment.variations || null,
+      relatedExperiments: insertExperiment.relatedExperiments || null,
+      videoUrl: insertExperiment.videoUrl || null,
+      arModelUrl: insertExperiment.arModelUrl || null,
+      arMarkerImageUrl: insertExperiment.arMarkerImageUrl || null,
+      arInstructions: insertExperiment.arInstructions || null
+    };
+    this.experiments.set(id, experiment);
+    return experiment;
+  }
+  
+  // Material CRUD
+  async getMaterialsByExperimentId(experimentId: number): Promise<Material[]> {
+    return Array.from(this.materials.values()).filter(
+      (material) => material.experimentId === experimentId
+    );
+  }
+  
+  async createMaterial(insertMaterial: InsertMaterial): Promise<Material> {
+    const id = this.materialCurrentId++;
+    const material: Material = { ...insertMaterial, id };
+    this.materials.set(id, material);
+    return material;
+  }
+  
+  // Resource CRUD
+  async getResourcesByExperimentId(experimentId: number): Promise<Resource[]> {
+    return Array.from(this.resources.values()).filter(
+      (resource) => resource.experimentId === experimentId
+    );
+  }
+  
+  async createResource(insertResource: InsertResource): Promise<Resource> {
+    const id = this.resourceCurrentId++;
+    const resource: Resource = { ...insertResource, id };
+    this.resources.set(id, resource);
+    return resource;
+  }
+  
+  // User Progress Tracking
+  async getUserExperiments(userId: number): Promise<UserExperiment[]> {
+    return Array.from(this.userExperiments.values()).filter(exp => exp.userId === userId);
+  }
+  
+  async getCompletedExperiments(userId: number): Promise<(UserExperiment & { experiment: Experiment })[]> {
+    const userExperiments = await this.getUserExperiments(userId);
+    const completedExperiments: (UserExperiment & { experiment: Experiment })[] = [];
+    
+    for (const userExp of userExperiments) {
+      const experiment = this.experiments.get(userExp.experimentId);
+      if (experiment && userExp.completed) {
+        completedExperiments.push({
+          ...userExp,
+          experiment
+        });
+      }
+    }
+    
+    return completedExperiments;
+  }
+  
+  async markExperimentComplete(insertUserExperiment: InsertUserExperiment): Promise<UserExperiment> {
+    const id = this.userExperimentCurrentId++;
+    const now = new Date();
+    
+    const userExperiment: UserExperiment = {
+      id,
+      ...insertUserExperiment,
+      completed: true,
+      completedAt: now,
+      createdAt: now,
+      updatedAt: now
+    };
+    
+    this.userExperiments.set(id, userExperiment);
+    return userExperiment;
+  }
+  
+  async updateExperimentProgress(id: number, userExperiment: Partial<InsertUserExperiment>): Promise<UserExperiment> {
+    const existingExperiment = this.userExperiments.get(id);
+    
+    if (!existingExperiment) {
+      throw new Error(`User experiment with ID ${id} not found`);
+    }
+    
+    const updatedExperiment: UserExperiment = {
+      ...existingExperiment,
+      ...userExperiment,
+      updatedAt: new Date()
+    };
+    
+    this.userExperiments.set(id, updatedExperiment);
+    return updatedExperiment;
+  }
+  
+  // Achievement Methods
+  async getUserAchievements(userId: number): Promise<(UserAchievement & { achievement: Achievement })[]> {
+    const userAchievementsList: (UserAchievement & { achievement: Achievement })[] = [];
+    
+    for (const userAchievement of this.userAchievements.values()) {
+      if (userAchievement.userId === userId) {
+        const achievement = this.achievements.get(userAchievement.achievementId);
+        
+        if (achievement) {
+          userAchievementsList.push({
+            ...userAchievement,
+            achievement
+          });
+        }
+      }
+    }
+    
+    return userAchievementsList;
+  }
+  
+  async getAchievementsByCategory(category: string): Promise<Achievement[]> {
+    return Array.from(this.achievements.values()).filter(ach => ach.category === category);
+  }
+  
+  async unlockAchievement(userId: number, achievementId: number): Promise<UserAchievement> {
+    // Check if user already has this achievement
+    for (const [id, userAchievement] of this.userAchievements.entries()) {
+      if (userAchievement.userId === userId && userAchievement.achievementId === achievementId) {
+        // If it exists, just update the unlockedAt to now
+        const updatedAchievement: UserAchievement = {
+          ...userAchievement,
+          unlockedAt: new Date(),
+          progress: 100
+        };
+        
+        this.userAchievements.set(id, updatedAchievement);
+        return updatedAchievement;
+      }
+    }
+    
+    // Otherwise create a new user achievement
+    const id = this.userAchievementCurrentId++;
+    const now = new Date();
+    
+    const userAchievement: UserAchievement = {
+      id,
+      userId,
+      achievementId,
+      progress: 100,
+      unlockedAt: now,
+      createdAt: now
+    };
+    
+    this.userAchievements.set(id, userAchievement);
+    return userAchievement;
+  }
+  
+  async updateAchievementProgress(userId: number, achievementId: number, progress: number): Promise<UserAchievement> {
+    // Check if user already has this achievement in progress
+    for (const [id, userAchievement] of this.userAchievements.entries()) {
+      if (userAchievement.userId === userId && userAchievement.achievementId === achievementId) {
+        // Update the progress
+        const updatedAchievement: UserAchievement = {
+          ...userAchievement,
+          progress,
+          ...(progress >= 100 ? { unlockedAt: new Date() } : {})
+        };
+        
+        this.userAchievements.set(id, updatedAchievement);
+        return updatedAchievement;
+      }
+    }
+    
+    // Create a new achievement progress entry
+    const id = this.userAchievementCurrentId++;
+    const now = new Date();
+    
+    const userAchievement: UserAchievement = {
+      id,
+      userId,
+      achievementId,
+      progress,
+      createdAt: now,
+      ...(progress >= 100 ? { unlockedAt: now } : {})
+    };
+    
+    this.userAchievements.set(id, userAchievement);
+    return userAchievement;
+  }
+  
+  // Initialize with sample data
+  private async initializeData() {
+    // Create grades
+    const grade7 = await this.createGrade({ number: 7, name: "Grade 7", color: "#4CAF50" });
+    const grade8 = await this.createGrade({ number: 8, name: "Grade 8", color: "#2196F3" });
+    const grade9 = await this.createGrade({ number: 9, name: "Grade 9", color: "#9C27B0" });
+    const grade10 = await this.createGrade({ number: 10, name: "Grade 10", color: "#F44336" });
+    const grade11 = await this.createGrade({ number: 11, name: "Grade 11", color: "#FF9800" });
+    const grade12 = await this.createGrade({ number: 12, name: "Grade 12", color: "#795548" });
+    
+    // Create topics for grade 7
+    const topic1 = await this.createTopic({ name: "Energy and Change", gradeId: grade7.id });
+    const topic2 = await this.createTopic({ name: "Matter and Materials", gradeId: grade7.id });
+    const topic3 = await this.createTopic({ name: "Life and Living", gradeId: grade7.id });
+    const topic4 = await this.createTopic({ name: "Earth and Beyond", gradeId: grade7.id });
+    
+    // Create experiments for Grade 7
+    const experiment1 = await this.createExperiment({
+      title: "Acid-Base Reactions",
+      description: "Investigate how acids and bases react with indicators to produce color changes.",
+      duration: "45 minutes",
+      imageUrl: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      topicId: topic2.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Preparation", description: "Gather all materials and set up your workspace with proper ventilation. Put on safety goggles and gloves." },
+        { step: 2, title: "Creating Indicators", description: "Extract red cabbage juice by boiling chopped red cabbage in water for 10 minutes, then strain. Prepare litmus solution according to package instructions." },
+        { step: 3, title: "Testing Solutions", description: "Label test tubes and add small amounts of household substances. Add 5 drops of indicator to each test tube and observe color changes." },
+        { step: 4, title: "Recording Results", description: "Create a table to record the original color of each solution, the color after adding the indicator, and whether it is acidic, basic, or neutral." },
+        { step: 5, title: "Analysis and Conclusion", description: "Compare your results with the pH scale reference. Discuss how indicators work and why different substances show different colors." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 2, Matter and Materials: Acids and Bases",
+        learningOutcomes: [
+          "Identify acidic and basic substances using indicators",
+          "Understand the pH scale and its significance",
+          "Record observations and draw conclusions from experimental data"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Identify acidic and basic substances using indicators",
+        "Understand the pH scale and its significance",
+        "Record observations and draw conclusions from experimental data"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Create a pH scale rainbow using different concentrations of acids and bases",
+        "Investigate the pH of various foods and beverages",
+        "Research how pH affects aquatic ecosystems and plant growth"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Wear safety goggles and gloves throughout the experiment",
+        "Handle acidic substances with care",
+        "Do not taste any substances",
+        "Wash hands thoroughly after the experiment",
+        "Clean up spills immediately"
+      ])
+    });
+    
+    // Create materials for the experiment
+    await this.createMaterial({ name: "Test tubes (6-8)", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Test tube rack", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Red cabbage", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Litmus paper", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Vinegar", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Baking soda solution", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Lemon juice", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Soap solution", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Distilled water", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Droppers", experimentId: experiment1.id });
+    await this.createMaterial({ name: "Safety goggles and gloves", experimentId: experiment1.id });
+    
+    // Create resources for the experiment
+    await this.createResource({ name: "Printable Worksheet", type: "document", url: "#", experimentId: experiment1.id });
+    await this.createResource({ name: "Demo Video", type: "video", url: "#", experimentId: experiment1.id });
+    await this.createResource({ name: "Teacher's Guide", type: "document", url: "#", experimentId: experiment1.id });
+    
+    // Create more experiments for Grade 7
+    const experiment2 = await this.createExperiment({
+      title: "Cell Structure Observation",
+      description: "Examine plant and animal cells under a microscope and identify key cellular structures.",
+      duration: "60 minutes",
+      imageUrl: "https://images.unsplash.com/photo-1516728778615-2d590ea1855e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      topicId: topic3.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Preparation", description: "Gather all materials. Prepare microscope for observation." },
+        { step: 2, title: "Create Slides", description: "Prepare slides of onion skin and cheek cells according to standard procedures." },
+        { step: 3, title: "Observe Cells", description: "Use microscope to observe and identify cellular structures in both types of cells." },
+        { step: 4, title: "Document Findings", description: "Draw and label observed structures in your science journal." },
+        { step: 5, title: "Compare and Contrast", description: "Identify similarities and differences between plant and animal cells." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 1, Life and Living: The Cell as Basic Unit of Life",
+        learningOutcomes: [
+          "Identify key structures in plant and animal cells",
+          "Understand the functions of various cell components",
+          "Develop microscopy skills and scientific observation"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Identify key structures in plant and animal cells",
+        "Understand the functions of various cell components",
+        "Develop microscopy skills and scientific observation"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Observe different types of plant cells from various parts of plants",
+        "Investigate the effects of different solutions on cell structures",
+        "Research specialized cells in the human body"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Handle microscope and glass slides with care",
+        "Dispose of used materials properly",
+        "Follow proper sterilization procedures for collecting cheek cells"
+      ])
+    });
+    
+    const experiment3 = await this.createExperiment({
+      title: "Simple Electric Circuits",
+      description: "Build simple circuits and investigate the effect of series and parallel connections.",
+      duration: "50 minutes",
+      imageUrl: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      topicId: topic1.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Gather Materials", description: "Collect all electrical components and ensure batteries are charged." },
+        { step: 2, title: "Build Simple Circuit", description: "Connect battery, switch, and bulb to create a simple circuit." },
+        { step: 3, title: "Test Conductors", description: "Test various materials to determine if they are conductors or insulators." },
+        { step: 4, title: "Create Series Circuit", description: "Connect multiple bulbs in series and observe brightness." },
+        { step: 5, title: "Create Parallel Circuit", description: "Connect multiple bulbs in parallel and compare to series circuit." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 3, Energy and Change: Electric Circuits",
+        learningOutcomes: [
+          "Construct simple electric circuits",
+          "Understand the difference between series and parallel circuits",
+          "Identify conductors and insulators"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Construct simple electric circuits",
+        "Understand the difference between series and parallel circuits",
+        "Identify conductors and insulators"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Design a circuit with a specific purpose (e.g., alarm system)",
+        "Investigate the effect of different battery voltages on bulb brightness",
+        "Research how circuits are used in everyday electronic devices"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Never connect batteries directly to each other",
+        "Use only low-voltage batteries (1.5V - 9V)",
+        "Do not experiment with household electricity",
+        "Handle wire ends carefully to avoid scratches"
+      ])
+    });
+    
+    const experiment4 = await this.createExperiment({
+      title: "Solar System Scale Model",
+      description: "Create a scale model of the solar system to understand relative sizes and distances.",
+      duration: "90 minutes",
+      imageUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      topicId: topic4.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Research", description: "Gather data on the sizes and distances of planets in the solar system." },
+        { step: 2, title: "Calculate Scale", description: "Determine an appropriate scale for your model based on available space." },
+        { step: 3, title: "Create Planet Models", description: "Create scaled models of each planet using provided materials." },
+        { step: 4, title: "Position Planets", description: "Place planets at the correct scaled distances from the sun." },
+        { step: 5, title: "Present and Discuss", description: "Present your model and discuss what you learned about the solar system's scale." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 4, Earth and Beyond: The Solar System",
+        learningOutcomes: [
+          "Understand the relative sizes and distances in the solar system",
+          "Apply mathematical concepts to create accurate scale models",
+          "Comprehend the vastness of space and relative positions of planets"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Understand the relative sizes and distances in the solar system",
+        "Apply mathematical concepts to create accurate scale models",
+        "Comprehend the vastness of space and relative positions of planets"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Calculate how long it would take to travel between planets at various speeds",
+        "Research dwarf planets and determine where they fit in your model",
+        "Create a presentation about a specific planet including recent discoveries"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Use scissors and other tools carefully",
+        "Avoid using extremely small objects that could be swallowed",
+        "Work in a large open space to prevent tripping hazards when creating large-scale models"
+      ])
+    });
+    
+    // Add more experiments to fill out all the cards in the UI
+    const experiment5 = await this.createExperiment({
+      title: "Water Filtration Systems",
+      description: "Design and test different filtration systems to clean contaminated water.",
+      duration: "75 minutes",
+      imageUrl: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      topicId: topic2.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Preparation", description: "Gather materials and prepare 'contaminated' water samples." },
+        { step: 2, title: "Design Filters", description: "Design multiple filtration systems using different materials." },
+        { step: 3, title: "Build Filters", description: "Construct filtration systems according to your designs." },
+        { step: 4, title: "Test Effectiveness", description: "Run contaminated water through each system and collect filtered water." },
+        { step: 5, title: "Evaluate Results", description: "Compare the clarity and cleanliness of water from each system." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 2, Matter and Materials: Separating Mixtures",
+        learningOutcomes: [
+          "Design and build effective water filtration systems",
+          "Understand filtration as a method of separating mixtures",
+          "Evaluate the effectiveness of different filter materials"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Design and build effective water filtration systems",
+        "Understand filtration as a method of separating mixtures",
+        "Evaluate the effectiveness of different filter materials"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Research water treatment facilities in South Africa",
+        "Investigate the impact of water pollution on local ecosystems",
+        "Design an improved filtration system based on your findings"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Do not drink any water samples, even after filtration",
+        "Wash hands thoroughly after handling materials",
+        "Dispose of materials properly after the experiment"
+      ])
+    });
+    
+    const experiment6 = await this.createExperiment({
+      title: "Plant Growth Factors",
+      description: "Investigate how light, water, and soil affect plant growth and development.",
+      duration: "2 weeks",
+      imageUrl: "https://pixabay.com/get/g7bfd631c6152b2aa9507968aa2b457494e15acdeec93cdca9d2e95016afb111e74a01983c7d56d82fa0f9d6ae3c266452921a0f9924c0113fa080c982f429e97_1280.jpg",
+      topicId: topic3.id,
+      gradeId: grade7.id,
+      procedure: JSON.stringify([
+        { step: 1, title: "Setup", description: "Prepare pots with soil and plant identical seeds in each." },
+        { step: 2, title: "Variable Control", description: "Create different growing conditions: varying light, water, and soil types." },
+        { step: 3, title: "Daily Maintenance", description: "Maintain the specific conditions for each plant group." },
+        { step: 4, title: "Data Collection", description: "Measure and record plant height, leaf count, and appearance daily." },
+        { step: 5, title: "Analysis", description: "Compare growth patterns and determine which factors had the greatest impact." }
+      ]),
+      curriculumAlignment: JSON.stringify({
+        capsReference: "NS Grade 7, Term 1, Life and Living: Plant Growth",
+        learningOutcomes: [
+          "Understand factors affecting plant growth and development",
+          "Design and conduct controlled experiments",
+          "Collect, record, and analyze scientific data"
+        ]
+      }),
+      learningOutcomes: JSON.stringify([
+        "Understand factors affecting plant growth and development",
+        "Design and conduct controlled experiments",
+        "Collect, record, and analyze scientific data"
+      ]),
+      extensionActivities: JSON.stringify([
+        "Investigate the effect of music or sound on plant growth",
+        "Research how different plant species adapt to extreme conditions",
+        "Design an optimal growing environment for a specific plant species"
+      ]),
+      safetyPrecautions: JSON.stringify([
+        "Use caution when handling soil and fertilizers",
+        "Wash hands after gardening activities",
+        "Be aware of any allergies to plants or seeds"
+      ])
+    });
+  }
+}
+
+// Using MemStorage to bypass database connection issues for navigation testing
+export const storage = new MemStorage();
