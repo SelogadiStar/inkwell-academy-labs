@@ -1,0 +1,454 @@
+Extended Prompts (Days 141–365):
+
+Day 141: What is a catalyst and how does it work?
+
+Day 142: Why does metal feel colder than wood at room temperature?
+
+Day 143: What’s the difference between mass and weight?
+
+Day 144: How do planes stay in the air?
+
+Day 145: What’s the purpose of a control in an experiment?
+
+Day 146: How does a battery produce electricity?
+
+Day 147: What is the ozone layer and why is it important?
+
+Day 148: How are magnets used in daily life?
+
+Day 149: What is conservation of energy?
+
+Day 150: What is the greenhouse effect?
+
+...
+
+Day 151: Why do ears pop when you go up a mountain or in an airplane?
+
+Day 152: What makes lightning and thunder happen?
+
+Day 153: How does sunscreen protect your skin?
+
+Day 154: What causes tides in the ocean?
+
+Day 155: Why is the sky blue?
+
+Day 156: What happens to your body in space?
+
+Day 157: Why do some objects float while others sink?
+
+Day 158: How does a thermometer work?
+
+Day 159: What is static electricity?
+
+Day 160: How do mirrors reflect light?
+
+Day 161: What’s the difference between series and parallel circuits?
+
+Day 162: What is surface tension and why do water droplets form spheres?
+
+Day 163: How does the water cycle work?
+
+Day 164: What are fossil fuels and how are they formed?
+
+Day 165: How do wind turbines generate electricity?
+
+Day 166: What are Newton’s three laws of motion?
+
+Day 167: Why do astronauts experience weightlessness?
+
+Day 168: How do plants make their own food?
+
+Day 169: What is the role of the mitochondria in a cell?
+
+Day 170: How does a prism split light into a rainbow?
+
+Day 171: What are the states of matter beyond solid, liquid, and gas?
+
+Day 172: Why do your muscles get sore after exercise?
+
+Day 173: How does gravity affect time in space?
+
+Day 174: What’s the difference between weather and climate?
+
+Day 175: How is DNA used to solve crimes?
+
+Day 176: Why does ice float on water?
+
+Day 177: What causes earthquakes?
+
+Day 178: How do vaccines work?
+
+Day 179: How does the digestive system work?
+
+Day 180: What is photosynthesis?
+
+Day 181: Why do leaves change color in autumn?
+
+Day 182: What is the scientific method?
+
+Day 183: How does friction affect motion?
+
+Day 184: What are black holes?
+
+Day 185: What causes different phases of the moon?
+
+Day 186: How do you measure sound?
+
+Day 187: What is pH and how does it affect the environment?
+
+Day 188: Why does your voice sound different on a recording?
+
+Day 189: What is a solar eclipse?
+
+Day 190: How does a compass work?
+
+Day 191: What is the role of enzymes in digestion?
+
+Day 192: How do submarines sink and float?
+
+Day 193: Why do your pupils dilate in the dark?
+
+Day 194: How is plastic made?
+
+Day 195: What is nuclear energy?
+
+Day 196: How does recycling help the Earth?
+
+Day 197: What is chromatography used for?
+
+Day 198: How does insulation keep things warm or cool?
+
+Day 199: What causes auroras (northern/southern lights)?
+
+Day 200: Why do metals conduct electricity?
+
+Day 201: How do optical illusions trick your brain?
+
+Day 202: What is renewable vs. non-renewable energy?
+
+Day 203: Why do bees buzz?
+
+Day 204: What is the Doppler Effect?
+
+Day 205: How do glasses help you see?
+
+Day 206: What causes rusting in metals?
+
+Day 207: How do enzymes speed up reactions?
+
+Day 208: What is climate change?
+
+Day 209: How do humans impact ecosystems?
+
+Day 210: What causes hiccups?
+
+Day 211: What is an exothermic vs. endothermic reaction?
+
+Day 212: How does sonar work?
+
+Day 213: What are tectonic plates?
+
+Day 214: How does a telescope work?
+
+Day 215: What is an atom made of?
+
+Day 216: Why do balloons rise?
+
+Day 217: What are acids and bases?
+
+Day 218: What is the role of chlorophyll in plants?
+
+Day 219: How do sound waves travel?
+
+Day 220: What is the boiling point and why does it matter?
+
+Day 221: Why are vitamins important?
+
+Day 222: How do you preserve food?
+
+Day 223: What causes wind?
+
+Day 224: What are the parts of the brain?
+
+Day 225: What is density and how is it measured?
+
+Day 226: Why do hot air balloons rise?
+
+Day 227: How does pollution affect water bodies?
+
+Day 228: What is the role of red blood cells?
+
+Day 229: How do microwaves heat food?
+
+Day 230: What is the function of the skeletal system?
+
+Day 231: What causes volcanoes to erupt?
+
+Day 232: What is the importance of biodiversity?
+
+Day 233: What are pathogens?
+
+Day 234: What’s the science behind hand sanitizers?
+
+Day 235: What is a chemical bond?
+
+Day 236: How does the nervous system work?
+
+Day 237: What is the function of the ozone layer?
+
+Day 238: How are rainbows formed?
+
+Day 239: What are the differences between reptiles and amphibians?
+
+Day 240: How does gravity shape the universe?
+
+Day 241: What causes magnets to attract or repel?
+
+Day 242: How do antibiotics fight bacteria?
+
+Day 243: What is a circuit breaker?
+
+Day 244: How is temperature measured in different units?
+
+Day 245: What is radiation?
+
+Day 246: How does a rocket launch work?
+
+Day 247: What is erosion?
+
+Day 248: How does digestion begin in the mouth?
+
+Day 249: What are polymers?
+
+Day 250: Why do stars twinkle?
+
+Day 251: What is the function of the heart?
+
+Day 252: How do we use satellites?
+
+Day 253: What are renewable natural resources?
+
+Day 254: What are the layers of the Earth?
+
+Day 255: How do earthquakes release energy?
+
+Day 256: What are genes?
+
+Day 257: How does water move through plants?
+
+Day 258: What is centripetal force?
+
+Day 259: How does air pressure affect weather?
+
+Day 260: What is the difference between speed and velocity?
+
+Day 261: What causes seasons?
+
+Day 262: What is a nebula?
+
+Day 263: How do plants reproduce?
+
+Day 264: What are constellations?
+
+Day 265: How is wind energy converted into electricity?
+
+Day 266: What causes color blindness?
+
+Day 267: How do ecosystems stay balanced?
+
+Day 268: What are the three types of rocks?
+
+Day 269: What is a lever and how does it work?
+
+Day 270: How do biomes differ across the globe?
+
+Day 271: What causes mold to grow?
+
+Day 272: What is a cell membrane?
+
+Day 273: What are the parts of an atom?
+
+Day 274: What is the electromagnetic spectrum?
+
+Day 275: How is weather predicted?
+
+Day 276: How does your body regulate temperature?
+
+Day 277: What causes chemical burns?
+
+Day 278: What is salinity?
+
+Day 279: Why do liquids have surface tension?
+
+Day 280: How do vaccines train the immune system?
+
+Day 281: How do submarines use buoyancy?
+
+Day 282: What is the pH scale?
+
+Day 283: Why is clean water important?
+
+Day 284: What are endangered species?
+
+Day 285: How do you identify minerals?
+
+Day 286: What are satellites used for?
+
+Day 287: What is renewable agriculture?
+
+Day 288: What is the science of composting?
+
+Day 289: How do tides affect marine life?
+
+Day 290: What causes droughts?
+
+Day 291: How do storm clouds form?
+
+Day 292: What are natural disasters?
+
+Day 293: What is forensic science?
+
+Day 294: What’s the difference between viruses and bacteria?
+
+Day 295: What are organ systems?
+
+Day 296: How is energy stored in food?
+
+Day 297: What is the function of the liver?
+
+Day 298: What are the layers of the atmosphere?
+
+Day 299: How does sonar detect objects underwater?
+
+Day 300: What are earthquakes measured with?
+
+Day 301: What is chemical energy?
+
+Day 302: How do filters clean air or water?
+
+Day 303: What is plate tectonics?
+
+Day 304: How is sugar digested in the body?
+
+Day 305: What is a lunar eclipse?
+
+Day 306: How are tsunamis formed?
+
+Day 307: What is the importance of the water table?
+
+Day 308: How do telescopes magnify distant objects?
+
+Day 309: What is an ecosystem service?
+
+Day 310: How do we track animal migrations?
+
+Day 311: What is a genetic mutation?
+
+Day 312: Why are amphibians considered indicator species?
+
+Day 313: What is the function of white blood cells?
+
+Day 314: How do bees help pollinate crops?
+
+Day 315: What are simple machines?
+
+Day 316: What causes ocean currents?
+
+Day 317: What is biotechnology?
+
+Day 318: How do we measure biodiversity?
+
+Day 319: What is atmospheric pressure?
+
+Day 320: How do fossil fuels affect the environment?
+
+Day 321: What is a compound microscope?
+
+Day 322: How do cells reproduce?
+
+Day 323: What causes tsunamis?
+
+Day 324: What is nanotechnology?
+
+Day 325: Why is calcium important for bones?
+
+Day 326: What is genetic engineering?
+
+Day 327: How is electricity generated from coal?
+
+Day 328: How do vaccines help achieve herd immunity?
+
+Day 329: What are the five kingdoms of living things?
+
+Day 330: How do engineers use math in science?
+
+Day 331: What is data logging?
+
+Day 332: What are plant adaptations in deserts?
+
+Day 333: What are atoms, elements, and molecules?
+
+Day 334: What is atmospheric carbon dioxide?
+
+Day 335: How do water filters work?
+
+Day 336: What is thermal energy?
+
+Day 337: How do plants respond to light?
+
+Day 338: What is a greenhouse gas?
+
+Day 339: How are sound waves reflected or absorbed?
+
+Day 340: What is plasma, the fourth state of matter?
+
+Day 341: What is selective breeding?
+
+Day 342: How do nerve signals travel?
+
+Day 343: What is pollution runoff?
+
+Day 344: What is digital simulation in science?
+
+Day 345: What is a science fair project idea for energy?
+
+Day 346: How are coral reefs affected by warming oceans?
+
+Day 347: What is the importance of the periodic table?
+
+Day 348: What are the steps in the scientific method?
+
+Day 349: How are blood types classified?
+
+Day 350: What causes echo?
+
+Day 351: How are artificial satellites different from natural ones?
+
+Day 352: What is genetic inheritance?
+
+Day 353: What are viruses made of?
+
+Day 354: How does a lightbulb produce light?
+
+Day 355: What are hormones?
+
+Day 356: What causes ice to melt?
+
+Day 357: What is a greenhouse?
+
+Day 358: What makes a planet habitable?
+
+Day 359: How is ocean acidification measured?
+
+Day 360: What are stem cells?
+
+Day 361: Why does sugar dissolve faster in hot water?
+
+Day 362: What is the difference between nuclear fission and fusion?
+
+Day 363: What is artificial intelligence used for in science?
+
+Day 364: What causes water to boil at lower temperatures on mountains?
+
+Day 365: What is the science behind baking bread?
+

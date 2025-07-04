@@ -1,0 +1,204 @@
+South African Science Lab Curriculum (Grade 7 to 12)
+
+Aligned with the National Curriculum Statement (NCS) and the Curriculum and Assessment Policy Statement (CAPS), this science lab curriculum provides hands-on experiments to reinforce theoretical knowledge and support practical assessment tasks.
+
+Grade 7 Science Lab Experiments
+
+Theme: Introduction to Scientific Investigation, Properties of Materials
+
+1. Measuring Volume Using a Graduated Cylinder
+
+Objective (NCS): Understand scientific measurement and instruments.
+
+Steps:
+
+Pour water into a beaker.
+
+Carefully transfer water into a graduated cylinder.
+
+Read the meniscus at eye level.
+
+Record the volume in milliliters (mL).
+
+2. Testing Properties of Materials
+
+Objective (NCS): Classify materials based on observable properties.
+
+Steps:
+
+Collect materials (plastic, fabric, metal, etc.).
+
+Bend each to test flexibility.
+
+Pour water to test permeability.
+
+Apply weights to test strength.
+
+Record results.
+
+Grade 8 Science Lab Experiments
+
+Theme: States of Matter, Mixtures, Chemical Change
+
+1. Separating a Mixture
+
+Objective (NCS): Apply physical separation methods.
+
+Steps:
+
+Mix sand, salt, and water.
+
+Filter to remove sand.
+
+Heat filtrate to evaporate water.
+
+Recover salt.
+
+2. Vinegar and Bicarbonate of Soda Reaction
+
+Objective (NCS): Identify evidence of a chemical reaction.
+
+Steps:
+
+Add baking soda to a beaker.
+
+Add vinegar slowly.
+
+Observe bubbling (CO₂ release).
+
+Write the reaction equation.
+
+Grade 9 Science Lab Experiments
+
+Theme: Chemical Reactions, Electric Circuits, Ecosystems
+
+1. Reaction Between Iron and Sulfur
+
+Objective (NCS): Differentiate between mixtures and compounds.
+
+Steps:
+
+Mix iron and sulfur.
+
+Heat the mixture.
+
+Observe formation of iron sulfide.
+
+Test magnetic properties before/after.
+
+2. Simple Electric Circuit
+
+Objective (NCS): Construct and understand electric circuits.
+
+Steps:
+
+Connect battery, bulb, wires, switch.
+
+Close the circuit to light the bulb.
+
+Add resistor and observe changes.
+
+Grade 10 Science Lab Experiments
+
+Theme: Atomic Theory, Chemical Reactions, Motion
+
+1. Displacement Reactions
+
+Objective (NCS): Investigate chemical reactivity of elements.
+
+Steps:
+
+Add CuSO₄ to test tube.
+
+Drop in zinc.
+
+Observe color change and copper formation.
+
+Write balanced equation.
+
+2. Measuring Speed
+
+Objective (NCS): Use formulas in motion calculations.
+
+Steps:
+
+Mark 5 m distance.
+
+Time learner walking/running.
+
+Calculate speed.
+
+Grade 11 Science Lab Experiments
+
+Theme: Acids and Bases, Newton’s Laws, Cell Respiration
+
+1. Titration: HCl and NaOH
+
+Objective (NCS): Perform acid-base neutralization.
+
+Steps:
+
+Fill burette with NaOH.
+
+Add HCl + indicator to flask.
+
+Slowly titrate until color change.
+
+Record volume used.
+
+2. Newton’s Second Law Experiment
+
+Objective (NCS): Demonstrate the relationship between force, mass, and acceleration.
+
+Steps:
+
+Use trolley, pulley, and weights.
+
+Vary mass or force.
+
+Measure acceleration.
+
+Plot graph.
+
+Grade 12 Science Lab Experiments
+
+Theme: Organic Chemistry, Electromagnetism, Reaction Rates
+
+1. Reaction Rate (Mg and HCl)
+
+Objective (NCS): Explore how concentration affects rate of reaction.
+
+Steps:
+
+Add HCl to test tube.
+
+Insert Mg strip.
+
+Measure gas volume over time.
+
+Repeat with different concentrations.
+
+2. Investigating Ohm’s Law
+
+Objective (NCS): Verify relationship between voltage, current, and resistance.
+
+Steps:
+
+Build circuit with resistor, ammeter, voltmeter.
+
+Adjust voltage.
+
+Record current and voltage.
+
+Plot V-I graph.
+
+Next Steps for Social Media and 3D Visuals:
+
+Short-form scripts per experiment (hook, demo, voiceover).
+
+3D illustration of setups, particle animations, and interactive models.
+
+Safety emphasis in all visuals.
+
+All experiments align with NCS principles of Scientific Literacy, encouraging learners to investigate, understand, and apply science in the real world.
+

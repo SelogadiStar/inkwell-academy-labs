@@ -1,0 +1,97 @@
+import React, { useState } from 'react';
+import { Home, FlaskConical, BookOpenText, Sigma, User } from 'lucide-react';
+
+const TABS = ["home", "science", "english", "math", "profile"];
+
+const scienceExperiments = [
+  {
+    title: "Limewater Test for CO₂",
+    description: "Detects carbon dioxide using limewater.",
+    image: "https://via.placeholder.com/200x120?text=Experiment+1"
+  },
+  {
+    title: "Compare Densities by Hand",
+    description: "Estimate density by feel and balance.",
+    image: "https://via.placeholder.com/200x120?text=Experiment+2"
+  },
+  {
+    title: "Thermal Decomposition",
+    description: "Explore reactions using heat on compounds.",
+    image: "https://via.placeholder.com/200x120?text=Experiment+3"
+  }
+];
+
+export default function MobileHome() {
+  const [tab, setTab] = useState("home");
+
+  return (
+    <div className="min-h-screen bg-[#F6F7FB] text-[#0A1D57] flex flex-col">
+      {/* Main Content */}
+      <div className="flex-1 px-4 pt-6 pb-20">
+        {tab === "home" && (
+          <div>
+            <h1 className="text-3xl font-bold mb-2">Welcome to Inkwell Labs</h1>
+            <p className="text-sm">Your learning journey starts here.</p>
+          </div>
+        )}
+
+        {tab === "science" && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4">🔬 Science Labs on the Go</h2>
+            <div className="grid gap-4">
+              {scienceExperiments.map((exp, index) => (
+                <div key={index} className="bg-white shadow-md rounded-xl overflow-hidden">
+                  <img src={exp.image} alt={exp.title} className="w-full h-32 object-cover" />
+                  <div className="p-3">
+                    <h3 className="font-bold text-lg">{exp.title}</h3>
+                    <p className="text-sm text-gray-600">{exp.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {tab === "english" && (
+          <div>
+            <h2 className="text-xl font-bold">English That Speaks</h2>
+            <p className="text-sm">Debates, creative writing, and book club activities.</p>
+          </div>
+        )}
+
+        {tab === "math" && (
+          <div>
+            <h2 className="text-xl font-bold">Mathematics That Clicks</h2>
+            <p className="text-sm">Math puzzles, generators, and practice games.</p>
+          </div>
+        )}
+
+        {tab === "profile" && (
+          <div>
+            <h2 className="text-xl font-bold">My Profile</h2>
+            <p className="text-sm">Track your learning progress and achievements.</p>
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-inner border-t border-gray-200 flex justify-around py-2 z-20">
+        <button onClick={() => setTab("home")} className={`flex flex-col items-center text-xs ${tab === "home" ? "text-[#0A1D57] font-bold" : "text-gray-500"}`}>
+          <Home size={20} />Home
+        </button>
+        <button onClick={() => setTab("science")} className={`flex flex-col items-center text-xs ${tab === "science" ? "text-[#0A1D57] font-bold" : "text-gray-500"}`}>
+          <FlaskConical size={20} />Science
+        </button>
+        <button onClick={() => setTab("english")} className={`flex flex-col items-center text-xs ${tab === "english" ? "text-[#0A1D57] font-bold" : "text-gray-500"}`}>
+          <BookOpenText size={20} />English
+        </button>
+        <button onClick={() => setTab("math")} className={`flex flex-col items-center text-xs ${tab === "math" ? "text-[#0A1D57] font-bold" : "text-gray-500"}`}>
+          <Sigma size={20} />Math
+        </button>
+        <button onClick={() => setTab("profile")} className={`flex flex-col items-center text-xs ${tab === "profile" ? "text-[#0A1D57] font-bold" : "text-gray-500"}`}>
+          <User size={20} />Me
+        </button>
+      </nav>
+    </div>
+  );
+}

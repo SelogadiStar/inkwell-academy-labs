@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    
+    /* Navy Blue */
+    --primary: 216 71% 15%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Gold */
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 216 71% 15%;
+    
+    /* Gold accent */
+    --accent: 51 100% 50%;
+    --accent-foreground: 216 71% 15%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+    
+    /* Grade colors */
+    --grade7: 122 68% 49%;
+    --grade8: 207 90% 54%;
+    --grade9: 291 73% 42%;
+    --grade10: 0 73% 58%;
+    --grade11: 36 100% 50%;
+    --grade12: 16 33% 38%;
+    
+    /* Light background */
+    --lightBg: 0 0% 98%;
+    --darkText: 0 0% 20%;
+    
+    /* Inkwell theme colors */
+    --navy: 216 71% 15%;
+    --navy-light: 216 71% 25%; 
+    --navy-dark: 216 71% 10%;
+    --gold: 51 100% 50%;
+    --gold-light: 51 100% 65%;
+    --gold-dark: 45 100% 40%;
+  }
+
+  .dark {
+    --background: 216 71% 10%;
+    --foreground: 0 0% 98%;
+    --muted: 216 30% 20%;
+    --muted-foreground: 210 30% 70%;
+    --popover: 216 71% 15%;
+    --popover-foreground: 0 0% 98%;
+    --card: 216 50% 15%;
+    --card-foreground: 0 0% 98%;
+    --border: 216 30% 25%;
+    --input: 216 30% 25%;
+    
+    /* Navy Blue - darker */
+    --primary: 216 71% 20%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Gold - darker */
+    --secondary: 45 90% 45%;
+    --secondary-foreground: 216 71% 15%;
+    
+    /* Gold accent - darker */
+    --accent: 45 90% 45%;
+    --accent-foreground: 216 71% 15%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 216 70% 40%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-[#FAFAFA] text-[#333333];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-roboto;
+  }
+}
+
+@layer utilities {
+  /* Grade colors */
+  .bg-grade7 {
+    background-color: #4CAF50;
+  }
+  .bg-grade8 {
+    background-color: #2196F3;
+  }
+  .bg-grade9 {
+    background-color: #9C27B0;
+  }
+  .bg-grade10 {
+    background-color: #F44336;
+  }
+  .bg-grade11 {
+    background-color: #FF9800;
+  }
+  .bg-grade12 {
+    background-color: #795548;
+  }
+  .text-grade7 {
+    color: #4CAF50;
+  }
+  .text-grade8 {
+    color: #2196F3;
+  }
+  .text-grade9 {
+    color: #9C27B0;
+  }
+  .text-grade10 {
+    color: #F44336;
+  }
+  .text-grade11 {
+    color: #FF9800;
+  }
+  .text-grade12 {
+    color: #795548;
+  }
+  .border-grade7 {
+    border-color: #4CAF50;
+  }
+  .border-grade8 {
+    border-color: #2196F3;
+  }
+  .border-grade9 {
+    border-color: #9C27B0;
+  }
+  .border-grade10 {
+    border-color: #F44336;
+  }
+  .border-grade11 {
+    border-color: #FF9800;
+  }
+  .border-grade12 {
+    border-color: #795548;
+  }
+  
+  /* Inkwell colors */
+  .bg-navy {
+    background-color: #0A1E42;
+  }
+  .text-navy {
+    color: #0A1E42;
+  }
+  .border-navy {
+    border-color: #0A1E42;
+  }
+  .bg-gold {
+    background-color: #FFD700;
+  }
+  .text-gold {
+    color: #FFD700;
+  }
+  .border-gold {
+    border-color: #FFD700;
+  }
+  
+  /* Inkwell gradients */
+  .bg-navy-to-gold {
+    background: linear-gradient(to right, #0A1E42, #FFD700);
+  }
+  .bg-gold-to-navy {
+    background: linear-gradient(to right, #FFD700, #0A1E42);
+  }
+  .text-navy-to-gold {
+    background: linear-gradient(to right, #0A1E42, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gold-to-navy {
+    background: linear-gradient(to right, #FFD700, #0A1E42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-lightBg {
+    background-color: #FAFAFA;
+  }
+  .text-darkText {
+    color: #333333;
+  }
+}
+
+@layer components {
+  .grade-tab.active {
+    @apply text-white font-semibold;
+  }
+  .experiment-card {
+    @apply transition-all duration-300;
+  }
+  .experiment-card:hover {
+    transform: translateY(-4px);
+    @apply shadow-lg;
+  }
+  .app-preview {
+    @apply shadow-2xl;
+  }
+}
+
+/* Font setup */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}

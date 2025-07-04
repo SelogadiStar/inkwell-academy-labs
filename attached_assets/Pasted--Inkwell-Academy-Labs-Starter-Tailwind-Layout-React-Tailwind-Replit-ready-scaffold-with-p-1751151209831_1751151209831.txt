@@ -1,0 +1,68 @@
+// Inkwell Academy Labs - Starter Tailwind Layout (React + Tailwind)
+// Replit-ready scaffold with placeholder assets and structure
+
+import React from 'react';
+
+export default function InkwellApp() {
+  return (
+    <div className="min-h-screen bg-[#F6F7FB] text-[#0A1D57]">
+      {/* Navigation */}
+      <nav className="bg-white shadow-md px-6 py-3 flex justify-between items-center sticky top-0 z-10">
+        <img src="/logo.png" alt="Inkwell Academy" className="h-10" />
+        <div className="space-x-4 font-semibold">
+          <a href="/science" className="hover:text-[#F2C94C]">Science</a>
+          <a href="/english" className="hover:text-[#F2C94C]">English</a>
+          <a href="/math" className="hover:text-[#F2C94C]">Math</a>
+          <button className="bg-[#0A1D57] text-white px-4 py-1 rounded">Login</button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 px-6 py-12">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Labs on the Go</h1>
+          <p className="text-lg">Explore science labs anytime, anywhere with our app.</p>
+        </div>
+        <div>
+          <img src="/assets/girl-tablet.png" alt="Inkwell Girl Tablet" className="rounded-xl" />
+        </div>
+      </section>
+
+      {/* Subject Cards */}
+      <section className="px-6 py-6">
+        <h2 className="text-2xl font-bold mb-4">Explore Subjects</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg">
+            <h3 className="text-xl font-bold mb-2">Science Labs</h3>
+            <p className="text-sm">Fun experiments, visuals, and practice sheets.</p>
+            <button className="mt-3 bg-[#4DD0E1] text-white px-3 py-1 rounded-md">Go to Science</button>
+          </div>
+          <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg">
+            <h3 className="text-xl font-bold mb-2">English That Speaks</h3>
+            <p className="text-sm">Debates, writing prompts, and book reviews.</p>
+            <button className="mt-3 bg-[#F48FB1] text-white px-3 py-1 rounded-md">Go to English</button>
+          </div>
+          <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg">
+            <h3 className="text-xl font-bold mb-2">Mathematics That Clicks</h3>
+            <p className="text-sm">Games, practice problems, and logic challenges.</p>
+            <button className="mt-3 bg-[#BA68C8] text-white px-3 py-1 rounded-md">Go to Math</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0A1D57] text-white text-sm p-6 mt-10">
+        <div className="flex justify-between flex-wrap">
+          <div>
+            <h3 className="font-bold">Inkwell Academy</h3>
+            <p>Powered by learners. Backed by science.</p>
+          </div>
+          <div className="space-x-4">
+            <a href="#" className="hover:underline">Privacy</a>
+            <a href="#" className="hover:underline">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
